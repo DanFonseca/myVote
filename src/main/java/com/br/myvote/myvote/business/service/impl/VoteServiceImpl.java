@@ -42,4 +42,9 @@ public class VoteServiceImpl implements VoteService {
         throw new IllegalArgumentException("Vote not found");
     }
 
+
+    public List<Vote> findByVoteSessionId(Long id) {
+        return voteRepository.findByVoteSessionId(id);
+    }
+
 }

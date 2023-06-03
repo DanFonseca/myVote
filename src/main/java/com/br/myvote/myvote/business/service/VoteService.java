@@ -9,4 +9,6 @@ public interface VoteService {
      Vote createVote(VoteDTO voteDTO);
      List<VoteDTO> findAll ();
      VoteDTO findById(Long id);
+
+     List<Vote> findByVoteSessionId (Long id);
 }

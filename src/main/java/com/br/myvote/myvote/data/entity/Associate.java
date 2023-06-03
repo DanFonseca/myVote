@@ -1,6 +1,7 @@
 package com.br.myvote.myvote.data.entity;
 
 import com.br.myvote.myvote.business.dto.AssociateDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,7 @@ public class Associate {
     private String email;
 
     @OneToMany (cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Vote> votes;
     public Associate(AssociateDTO associateDTO) {
         associateDTO.validate();

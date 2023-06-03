@@ -33,6 +33,6 @@ public class Agenda {
     public Agenda(AgendaDTO agendaDTO) {
         agendaDTO.validate();
         title = agendaDTO.title();
-        description = agendaDTO.description();
+        description = agendaDTO.description();;
     }
 }

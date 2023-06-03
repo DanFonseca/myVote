@@ -1,6 +1,7 @@
 package com.br.myvote.myvote.data.entity;
 
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,8 +30,8 @@ public class VoteSession {
     private Agenda agenda;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Vote> votes;
-
 
     public VoteSession(VoteSessionDTO voteSessionDTO) {
         // TODO voteSessionDTO.validate();

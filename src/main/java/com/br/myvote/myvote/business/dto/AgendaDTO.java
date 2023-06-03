@@ -6,11 +6,11 @@ public record AgendaDTO(Long id,
                         String title,
                         String description
 ) {
-    public AgendaDTO (Agenda agenda) {
+    public AgendaDTO(Agenda agenda) {
         this(agenda.getId(), agenda.getTitle(), agenda.getDescription());
     }
 
-    public void validate () {
+    public void validate() {
         if (title == null) {
             throw new IllegalArgumentException("Title must not be null");
         }

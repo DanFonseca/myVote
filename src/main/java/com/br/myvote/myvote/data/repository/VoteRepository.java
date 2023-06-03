@@ -4,6 +4,9 @@ import com.br.myvote.myvote.data.entity.Vote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface VoteRepository extends JpaRepository<Vote, Long> {
+    List<Vote> findByVoteSessionId (Long id);
 }

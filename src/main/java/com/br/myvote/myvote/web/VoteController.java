@@ -2,6 +2,7 @@ package com.br.myvote.myvote.web;
 
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.service.VoteService;
+import com.br.myvote.myvote.data.entity.Vote;
 import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +27,14 @@ public class VoteController {
 
     @ResponseBody()
     @GetMapping( "/{id}")
-    public VoteDTO getAssociateByCpf(@PathVariable("id") Long id){
+    public VoteDTO getVoteById(@PathVariable("id") Long id){
         return voteService.findById(id);
+    }
+
+    @ResponseBody()
+    @GetMapping( "/result/{id}")
+    public List<Vote> getVoteBySessionId(@PathVariable("id") Long id){
+        return voteService.findByVoteSessionId(id);
     }
 
     @ResponseBody

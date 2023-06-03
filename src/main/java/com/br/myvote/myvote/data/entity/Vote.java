@@ -19,8 +19,7 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @org.springframework.data.annotation.Id
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private VoteEnum voteEnum;
+    private String vote;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -32,8 +31,10 @@ public class Vote {
     private VoteSession voteSession;
 
     public Vote (VoteDTO voteDTO) {
+        voteDTO.validate();
+
         this.associate = voteDTO.associate();
         this.voteSession = voteDTO.voteSession();
-        this.voteEnum = voteDTO.voteEnum();
+        this.vote = voteDTO.vote();
     }
 }
