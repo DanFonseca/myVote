@@ -31,11 +31,16 @@ public class VoteServiceImpl implements VoteService {
 
     public Vote createVote(VoteDTO voteDTO) {
         Vote vote = new Vote(voteDTO);
-        canVote(voteDTO);
+        validateSessionExpire(voteDTO);
+
+        if(voteRepository.findByAssociateCpf(vote.getAssociate().getCpf()).isPresent()){
+            throw new IllegalArgumentException("You had already vote");
+        }
+
         return voteRepository.save(vote);
     }
 
-    public void canVote(VoteDTO voteDTO) {
+    public void validateSessionExpire(VoteDTO voteDTO) {
         VoteSessionDTO voteSessionDTO  = voteSessionService.findById(voteDTO.voteSession().getId());
         if (CalcUtil.voteSessionIsExpired(voteSessionDTO)){
             logger.info("Vote Session has expired");
