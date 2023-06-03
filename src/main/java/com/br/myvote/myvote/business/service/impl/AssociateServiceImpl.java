@@ -4,6 +4,8 @@ import com.br.myvote.myvote.business.dto.AssociateDTO;
 import com.br.myvote.myvote.business.service.AssociateService;
 import com.br.myvote.myvote.data.entity.Associate;
 import com.br.myvote.myvote.data.repository.AssociateRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class AssociateServiceImpl implements AssociateService {
+
+    Logger logger = LoggerFactory.getLogger(AssociateServiceImpl.class);
     private final AssociateRepository associateRepository;
 
     public AssociateServiceImpl(AssociateRepository associateRepository) {
@@ -30,10 +34,11 @@ public class AssociateServiceImpl implements AssociateService {
     public AssociateDTO findByCpf(String cpf) {
         Optional<Associate> result = associateRepository.findById(cpf);
 
-        if(result.isPresent()){
+        if (result.isPresent()) {
             return new AssociateDTO(result.get());
         }
 
+        logger.info("Associate with cpf " + cpf + " was not found");
         throw new IllegalArgumentException("Associate not found");
     }
 

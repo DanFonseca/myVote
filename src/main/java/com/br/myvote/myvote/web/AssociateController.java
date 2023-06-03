@@ -26,7 +26,7 @@ public class AssociateController {
 
     @ResponseBody()
     @GetMapping( "/{cpf}")
-    public AssociateDTO getAssociateByCpf(@PathParam("cpf") String cpf){
+    public AssociateDTO getAssociateByCpf(@PathVariable("cpf") String cpf){
         return associateService.findByCpf(cpf);
     }
 

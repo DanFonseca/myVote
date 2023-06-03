@@ -5,6 +5,8 @@ import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.service.VoteSessionService;
 import com.br.myvote.myvote.data.entity.VoteSession;
 import com.br.myvote.myvote.data.repository.VoteSessionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Optional;
 
 @Service
 public class VoteSessionServiceImpl implements VoteSessionService {
+
+    Logger logger = LoggerFactory.getLogger(VoteSessionServiceImpl.class);
     private final VoteSessionRepository voteSessionRepository;
     public VoteSessionServiceImpl(VoteSessionRepository VoteSessionRepository) {
         this.voteSessionRepository = VoteSessionRepository;
@@ -33,6 +37,7 @@ public class VoteSessionServiceImpl implements VoteSessionService {
             return new VoteSessionDTO(result.get());
         }
 
+        logger.info("Session with id " + id + " was not found");
         throw new IllegalArgumentException("Vote Session not found");
     }
 
