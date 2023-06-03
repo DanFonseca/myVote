@@ -23,15 +23,17 @@ public class Vote {
     private VoteEnum voteEnum;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cpf")
     private Associate associate;
-    @ManyToOne ()
+
+    @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn(name = "vote_session_id")
-    private Session session;
+    private VoteSession voteSession;
 
     public Vote (VoteDTO voteDTO) {
         this.associate = voteDTO.associate();
+        this.voteSession = voteDTO.voteSession();
         this.voteEnum = voteDTO.voteEnum();
     }
 }

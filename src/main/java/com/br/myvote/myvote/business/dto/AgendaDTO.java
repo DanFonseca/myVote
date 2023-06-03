@@ -1,17 +1,13 @@
 package com.br.myvote.myvote.business.dto;
 
 import com.br.myvote.myvote.data.entity.Agenda;
-import com.br.myvote.myvote.data.entity.Session;
-
-import java.util.List;
 
 public record AgendaDTO(Long id,
                         String title,
-                        String description,
-                        List<Session> session
+                        String description
 ) {
     public AgendaDTO (Agenda agenda) {
-        this(agenda.getId(), agenda.getTitle(), agenda.getDescription(), agenda.getSession());
+        this(agenda.getId(), agenda.getTitle(), agenda.getDescription());
     }
 
     public void validate () {

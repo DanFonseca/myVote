@@ -1,6 +1,7 @@
 package com.br.myvote.myvote.data.entity;
 
 import com.br.myvote.myvote.business.dto.AgendaDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,6 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class Agenda {
     @Id
-    // @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "title")
@@ -26,14 +26,13 @@ public class Agenda {
     @Column(name = "description")
     private String description;
 
-    @OneToMany()
-    private List<Session> session;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<VoteSession> voteSession;
 
     public Agenda(AgendaDTO agendaDTO) {
         agendaDTO.validate();
-
         title = agendaDTO.title();
         description = agendaDTO.description();
-
     }
 }

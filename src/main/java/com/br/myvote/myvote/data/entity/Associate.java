@@ -24,7 +24,7 @@ public class Associate {
     @Column(name = "email")
     private String email;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Vote> votes;
     public Associate(AssociateDTO associateDTO) {
         associateDTO.validate();

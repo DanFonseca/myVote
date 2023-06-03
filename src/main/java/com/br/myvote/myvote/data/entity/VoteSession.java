@@ -1,6 +1,6 @@
 package com.br.myvote.myvote.data.entity;
 
-import com.br.myvote.myvote.business.dto.SessionDTO;
+import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Table (name = "session")
-@Entity (name = "session")
+@Table (name = "vote_session")
+@Entity (name = "vote_session")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Session {
+public class VoteSession {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @org.springframework.data.annotation.Id
@@ -25,17 +25,16 @@ public class Session {
     private Timestamp createdAt;
 
 
-    @ManyToOne
-    //@JoinColumn(name = "agenda_id")
+    @ManyToOne (fetch = FetchType.EAGER)
     private Agenda agenda;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Vote> votes;
 
 
-    public Session(SessionDTO sessionDTO) {
+    public VoteSession(VoteSessionDTO voteSessionDTO) {
         // TODO voteSessionDTO.validate();
-        this.agenda = sessionDTO.agenda();
-        this.createdAt = sessionDTO.createdAt();
+        this.agenda = voteSessionDTO.agenda();
+        this.createdAt = voteSessionDTO.createdAt();
     }
 }

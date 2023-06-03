@@ -1,9 +1,9 @@
 package com.br.myvote.myvote.business.service.impl;
 
 
-import com.br.myvote.myvote.business.dto.SessionDTO;
+import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.service.VoteSessionService;
-import com.br.myvote.myvote.data.entity.Session;
+import com.br.myvote.myvote.data.entity.VoteSession;
 import com.br.myvote.myvote.data.repository.VoteSessionRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +17,20 @@ public class VoteSessionServiceImpl implements VoteSessionService {
         this.voteSessionRepository = VoteSessionRepository;
     }
 
-    public Session createVoteSession (SessionDTO sessionDTO) {
-       Session session = new Session(sessionDTO);
-        return voteSessionRepository.save(session);
+    public VoteSession createVoteSession (VoteSessionDTO voteSessionDTO) {
+       VoteSession voteSession = new VoteSession(voteSessionDTO);
+        return voteSessionRepository.save(voteSession);
     }
 
-    public List<SessionDTO> findAll () {
-        return voteSessionRepository.findAll().stream().map(SessionDTO::new).toList();
+    public List<VoteSessionDTO> findAll () {
+        return voteSessionRepository.findAll().stream().map(VoteSessionDTO::new).toList();
     }
 
-    public SessionDTO findById(Long id) {
-        Optional<Session> result = voteSessionRepository.findById(id);
+    public VoteSessionDTO findById(Long id) {
+        Optional<VoteSession> result = voteSessionRepository.findById(id);
 
         if(result.isPresent()){
-            return new SessionDTO(result.get());
+            return new VoteSessionDTO(result.get());
         }
 
         throw new IllegalArgumentException("Vote Session not found");

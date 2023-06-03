@@ -1,6 +1,6 @@
 package com.br.myvote.myvote.web;
 
-import com.br.myvote.myvote.business.dto.SessionDTO;
+import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.service.VoteSessionService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
@@ -11,28 +11,28 @@ import java.util.List;
 @RequestMapping("/vote-session")
 public class VoteSessionController {
 
-    private final VoteSessionService voteSessionService;
+    private final VoteSessionService sessionService;
 
-    public VoteSessionController(VoteSessionService voteSessionService){
-        this.voteSessionService = voteSessionService;
+    public VoteSessionController(VoteSessionService sessionService){
+        this.sessionService = sessionService;
     }
 
 
     @ResponseBody()
     @GetMapping
-    public List<SessionDTO> getAssociate(){
-        return voteSessionService.findAll();
+    public List<VoteSessionDTO> getSession(){
+        return sessionService.findAll();
     }
 
     @ResponseBody()
     @GetMapping( "/{id}")
-    public SessionDTO getAssociateByCpf(@PathParam("id") Long id){
-        return voteSessionService.findById(id);
+    public VoteSessionDTO getSessionById(@PathParam("id") Long id){
+        return sessionService.findById(id);
     }
 
     @ResponseBody
     @PostMapping
-    public void postAssociate (@RequestBody SessionDTO associateDTO) {
-        voteSessionService.createVoteSession(associateDTO);
+    public void postSession (@RequestBody VoteSessionDTO associateDTO) {
+        sessionService.createVoteSession(associateDTO);
     }
 }
