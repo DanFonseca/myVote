@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Table (name = "vote_session")
@@ -22,8 +23,13 @@ public class VoteSession {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @org.springframework.data.annotation.Id
     private Long id;
+
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Column(name = "time_to_expire")
+    Integer timeToExpire;
 
 
     @ManyToOne (fetch = FetchType.EAGER)
@@ -36,6 +42,13 @@ public class VoteSession {
     public VoteSession(VoteSessionDTO voteSessionDTO) {
         // TODO voteSessionDTO.validate();
         this.agenda = voteSessionDTO.agenda();
-        this.createdAt = voteSessionDTO.createdAt();
+        this.createdAt = new Date();
+
+        if(voteSessionDTO.timeToExpire() == null){
+            this.timeToExpire = 1;
+        }else {
+            this.timeToExpire = voteSessionDTO.timeToExpire();
+        }
+
     }
 }

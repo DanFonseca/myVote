@@ -7,6 +7,7 @@ import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/vote")
@@ -32,9 +33,15 @@ public class VoteController {
     }
 
     @ResponseBody()
-    @GetMapping( "/result/{id}")
+    @GetMapping( "/session-id/{id}")
     public List<Vote> getVoteBySessionId(@PathVariable("id") Long id){
         return voteService.findByVoteSessionId(id);
+    }
+
+    @ResponseBody()
+    @GetMapping( "/result/{session-id}")
+    public Map<String, Integer> getResult(@PathVariable("session-id") Long id){
+        return voteService.result(id);
     }
 
     @ResponseBody

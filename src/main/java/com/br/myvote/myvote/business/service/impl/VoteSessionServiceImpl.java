@@ -30,7 +30,9 @@ public class VoteSessionServiceImpl implements VoteSessionService {
 
     public VoteSession createVoteSession(VoteSessionDTO voteSessionDTO) {
         agendaService.findById(voteSessionDTO.agenda().getId());
+
         VoteSession voteSession = new VoteSession(voteSessionDTO);
+
         return voteSessionRepository.saveAndFlush(voteSession);
     }
 

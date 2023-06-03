@@ -4,6 +4,7 @@ import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.data.entity.Vote;
 
 import java.util.List;
+import java.util.Map;
 
 public interface VoteService {
      Vote createVote(VoteDTO voteDTO);
@@ -11,4 +12,6 @@ public interface VoteService {
      VoteDTO findById(Long id);
 
      List<Vote> findByVoteSessionId (Long id);
+
+      Map<String, Integer> result (Long sessionId);
 }

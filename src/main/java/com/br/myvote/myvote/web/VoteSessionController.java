@@ -33,7 +33,7 @@ public class VoteSessionController {
 
     @ResponseBody
     @PostMapping
-    public void postSession(@RequestBody VoteSessionDTO associateDTO) {
-        sessionService.createVoteSession(associateDTO);
+    public void postSession(@RequestBody VoteSessionDTO voteSessionDTO) {
+        sessionService.createVoteSession(voteSessionDTO);
     }
 }
