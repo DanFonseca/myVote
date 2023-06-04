@@ -10,6 +10,4 @@ import java.util.List;
 @Component
 public interface AgendaRepository extends JpaRepository<Agenda, Long> {
 
-//    @Query("select a, vs from Agenda a join VoteSession vs on a.id = vs.agenda.id")
-//    List <Agenda> findAgenda();
 }

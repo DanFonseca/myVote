@@ -3,6 +3,7 @@ package com.br.myvote.myvote.business.service.impl;
 
 import com.br.myvote.myvote.business.dto.AgendaDTO;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
+import com.br.myvote.myvote.business.excpetion.NotFoundException;
 import com.br.myvote.myvote.business.service.AgendaService;
 import com.br.myvote.myvote.business.service.VoteSessionService;
 import com.br.myvote.myvote.data.entity.Agenda;
@@ -48,7 +49,7 @@ public class VoteSessionServiceImpl implements VoteSessionService {
         }
 
         logger.info("Session with id " + id + " was not found");
-        throw new IllegalArgumentException("Vote Session not found");
+        throw new NotFoundException("Vote Session not found");
     }
 
 }

@@ -7,11 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 public interface VoteService {
-     Vote createVote(VoteDTO voteDTO);
-     List<VoteDTO> findAll ();
-     VoteDTO findById(Long id);
+    Vote createVote(VoteDTO voteDTO);
 
-     List<Vote> findByVoteSessionId (Long id);
+    List<VoteDTO> findAll();
 
-      Map<String, Integer> result (Long sessionId);
+    VoteDTO findById(Long id);
+
+    List<Vote> findByVoteSessionId(Long id);
+
+    Map<String, Integer> result(Long sessionId);
+
+    void validateSessionExpire(VoteDTO voteDTO);
 }

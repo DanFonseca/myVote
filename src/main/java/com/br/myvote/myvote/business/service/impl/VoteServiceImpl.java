@@ -3,6 +3,7 @@ package com.br.myvote.myvote.business.service.impl;
 
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
+import com.br.myvote.myvote.business.excpetion.NotFoundException;
 import com.br.myvote.myvote.business.service.VoteService;
 import com.br.myvote.myvote.business.service.VoteSessionService;
 import com.br.myvote.myvote.business.utils.CalcUtil;
@@ -34,7 +35,7 @@ public class VoteServiceImpl implements VoteService {
         validateSessionExpire(voteDTO);
 
         if(voteRepository.findByAssociateCpf(vote.getAssociate().getCpf()).isPresent()){
-            throw new IllegalArgumentException("You had already vote");
+            throw new IllegalArgumentException("You had already voted");
         }
 
         return voteRepository.save(vote);
@@ -60,7 +61,7 @@ public class VoteServiceImpl implements VoteService {
         }
 
         logger.info("Vote with id " + id + " was not found");
-        throw new IllegalArgumentException("Vote not found");
+        throw new NotFoundException("Vote not found");
     }
 
 

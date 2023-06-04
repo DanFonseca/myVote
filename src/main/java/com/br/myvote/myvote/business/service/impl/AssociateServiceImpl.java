@@ -1,6 +1,7 @@
 package com.br.myvote.myvote.business.service.impl;
 
 import com.br.myvote.myvote.business.dto.AssociateDTO;
+import com.br.myvote.myvote.business.excpetion.NotFoundException;
 import com.br.myvote.myvote.business.service.AssociateService;
 import com.br.myvote.myvote.data.entity.Associate;
 import com.br.myvote.myvote.data.repository.AssociateRepository;
@@ -39,7 +40,7 @@ public class AssociateServiceImpl implements AssociateService {
         }
 
         logger.info("Associate with cpf " + cpf + " was not found");
-        throw new IllegalArgumentException("Associate not found");
+        throw new NotFoundException("Associate not found");
     }
 
 }

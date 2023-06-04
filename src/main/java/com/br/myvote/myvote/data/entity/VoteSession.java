@@ -3,10 +3,7 @@ package com.br.myvote.myvote.data.entity;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,6 +12,7 @@ import java.util.List;
 @Table (name = "vote_session")
 @Entity (name = "vote_session")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
