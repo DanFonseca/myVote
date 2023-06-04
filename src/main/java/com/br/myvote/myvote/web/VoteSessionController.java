@@ -2,8 +2,6 @@ package com.br.myvote.myvote.web;
 
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.service.VoteSessionService;
-import jakarta.websocket.server.PathParam;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

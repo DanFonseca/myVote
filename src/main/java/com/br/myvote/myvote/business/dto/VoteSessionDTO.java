@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 
-public record VoteSessionDTO(Agenda agenda, Date createdAt, Integer timeToExpire, @JsonIgnore  List<Vote> votes) {
+public record VoteSessionDTO(Long id, Agenda agenda, Date createdAt, Integer timeToExpire, @JsonIgnore  List<Vote> votes) {
     public VoteSessionDTO(VoteSession voteSession) {
-        this(voteSession.getAgenda(),voteSession.getCreatedAt(), voteSession.getTimeToExpire(), voteSession.getVotes());
+        this(voteSession.getId(), voteSession.getAgenda(),voteSession.getCreatedAt(), voteSession.getTimeToExpire(), voteSession.getVotes());
     }
 }

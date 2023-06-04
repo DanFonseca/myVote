@@ -3,14 +3,12 @@ package com.br.myvote.myvote.data.entity;
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.dto.VoteEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "vote")
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

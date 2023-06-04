@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.CharArrayReader;
 
-public record VoteDTO(Associate associate, VoteSession voteSession, String vote) {
+public record VoteDTO(Long id, Associate associate, VoteSession voteSession, String vote) {
     public VoteDTO(Vote vote) {
-        this(vote.getAssociate(), vote.getVoteSession(), vote.getVote());
+        this(vote.getId(), vote.getAssociate(), vote.getVoteSession(), vote.getVote());
     }
 
     public void validate() {

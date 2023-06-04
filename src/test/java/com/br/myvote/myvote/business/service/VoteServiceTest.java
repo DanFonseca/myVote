@@ -1,7 +1,9 @@
 package com.br.myvote.myvote.business.service;
 
+import com.br.myvote.myvote.business.dto.AssociateDTO;
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
+import com.br.myvote.myvote.business.fixture.AssociateFixture;
 import com.br.myvote.myvote.business.fixture.VoteFixture;
 import com.br.myvote.myvote.business.service.impl.VoteServiceImpl;
 import com.br.myvote.myvote.data.entity.Vote;
@@ -13,8 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +29,27 @@ class VoteServiceTest {
 
     @InjectMocks
     private VoteServiceImpl voteService;
+
+
+
+    @Test
+    public void testCreateVote() {
+        VoteDTO voteDTO =  VoteFixture.createVoteDTO();
+        VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+
+        when(voteRepository.findByAssociateCpf(any())).thenReturn(Optional.empty());
+        when(voteSessionService.findById(voteDTO.voteSession().getId())).thenReturn(voteSessionDTO);
+
+        Vote vote = new Vote(voteDTO);
+
+        when(voteRepository.save(vote)).thenReturn(vote);
+
+        Vote createdVote = voteService.createVote(voteDTO);
+
+        assertNotNull(createdVote);
+        assertEquals(createdVote.getAssociate().getCpf(), "123");
+    }
+
 
 
     @Test
