@@ -41,13 +41,13 @@
 
 <!-- ABOUT THE PROJECT -->
 ## Sobre o Projeto
-API Rest com a função função principal de votar em uma determinada pauta no BackEnd.
+API Rest com a função principal de votar em uma determinada pauta no BackEnd.
 
 Os principais recursos desta API são:
 
 <ol>
 <li><a href="#1-criar-associado">Criação de um associado</a></li>
-<li><a href="#2-criacaoo-da-pauta">Criaação da Pauta</a></li> 
+<li><a href="#2-criacaoo-da-pauta">Criação da Pauta</a></li> 
 <li><a href="#3-criacao-da-sessao-de-votacao">Criação da Sessão de Votação</a></li>
 <li><a href="#4-make-transfer">Votar</a></li>
 </ol>
@@ -58,8 +58,8 @@ Os principais recursos desta API são:
     * A Arquitetura do projeto foram dividida em três camadas:
         * business: A camada de business representa toda regra de negócio do desafio, onde ficará os casos de uso (services),
           e utils na qual será utilizado para apoiar a regra de negócio.
-    * Data: A camada de data, representa os dados transacionais que serão armazenados e manipulado em tempo de execução.
-    * Web: A camada web representa o entrypoint do projeto, onde chegará as requisições e também as comunicações externas da API.
+        * Data: A camada de data, representa os dados transacionais que serão armazenados e manipulado em tempo de execução.
+        * Web: A camada web representa o entrypoint do projeto, onde chegará as requisições e também as comunicações externas da API.
 
 
   * Motivo:
