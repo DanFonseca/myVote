@@ -38,7 +38,7 @@ public class VoteFixture {
     public static VoteSession createVoteSession () {
         VoteSession voteSession = new VoteSession();
         voteSession.setId(1L);
-        voteSession.setTimeToExpire(1);
+        voteSession.setMinutesToExpire(1);
         voteSession.setCreatedAt(new Date());
 
         return voteSession;
@@ -47,7 +47,7 @@ public class VoteFixture {
     public static VoteSession createVoteSession (Agenda agenda) {
         VoteSession voteSession = new VoteSession();
         voteSession.setId(1L);
-        voteSession.setTimeToExpire(1);
+        voteSession.setMinutesToExpire(1);
         voteSession.setCreatedAt(new Date());
         voteSession.setAgenda(agenda);
 
@@ -57,7 +57,7 @@ public class VoteFixture {
     public static VoteSession createVoteSessionExpired () {
         VoteSession voteSession = new VoteSession();
         voteSession.setId(1L);
-        voteSession.setTimeToExpire(1);
+        voteSession.setMinutesToExpire(1);
         voteSession.setCreatedAt(new Date(1388530800000L));
 
         return voteSession;

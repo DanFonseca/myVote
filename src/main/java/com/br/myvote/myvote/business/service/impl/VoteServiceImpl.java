@@ -8,6 +8,7 @@ import com.br.myvote.myvote.business.service.VoteService;
 import com.br.myvote.myvote.business.service.VoteSessionService;
 import com.br.myvote.myvote.business.utils.CalcUtil;
 import com.br.myvote.myvote.data.entity.Vote;
+import com.br.myvote.myvote.data.repository.AssociateRepository;
 import com.br.myvote.myvote.data.repository.VoteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +26,23 @@ public class VoteServiceImpl implements VoteService {
 
     private final VoteSessionService voteSessionService;
 
-    public VoteServiceImpl(VoteRepository voteRepository, VoteSessionService voteSessionService) {
+    private final AssociateRepository associateRepository;
+
+    public VoteServiceImpl(VoteRepository voteRepository,
+                           VoteSessionService voteSessionService,
+                           AssociateRepository associateRepository) {
         this.voteRepository = voteRepository;
         this.voteSessionService = voteSessionService;
+        this.associateRepository = associateRepository;
     }
 
     public Vote createVote(VoteDTO voteDTO) {
         Vote vote = new Vote(voteDTO);
         validateSessionExpire(voteDTO);
+
+        if(associateRepository.findByCpf(vote.getAssociate().getCpf()) == null){
+            throw new IllegalArgumentException("Associate Not Found");
+        }
 
         if(voteRepository.findByAssociateCpf(vote.getAssociate().getCpf()).isPresent()){
             throw new IllegalArgumentException("You had already voted");

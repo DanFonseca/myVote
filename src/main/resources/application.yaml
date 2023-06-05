@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/polling_station
+    url: jdbc:postgresql://localhost:5432/myvote
     username: postgres
     password: postgres
   jpa:

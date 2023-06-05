@@ -32,7 +32,7 @@ public class CalcUtil {
     public static boolean voteSessionIsExpired(VoteSessionDTO voteSessionDTO) {
         Calendar calender = Calendar.getInstance();
         calender.setTimeInMillis(voteSessionDTO.createdAt().getTime());
-        calender.add(Calendar.MINUTE, voteSessionDTO.timeToExpire());
+        calender.add(Calendar.MINUTE, voteSessionDTO.minutesToExpire());
         long newTimeStamp = calender.getTimeInMillis();
 
         Date voteSessionExpireTime = new Date(newTimeStamp);

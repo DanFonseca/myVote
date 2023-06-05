@@ -1,12 +1,13 @@
 package com.br.myvote.myvote.business.service;
 
-import com.br.myvote.myvote.business.dto.AssociateDTO;
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.fixture.AssociateFixture;
 import com.br.myvote.myvote.business.fixture.VoteFixture;
 import com.br.myvote.myvote.business.service.impl.VoteServiceImpl;
+import com.br.myvote.myvote.data.entity.Associate;
 import com.br.myvote.myvote.data.entity.Vote;
+import com.br.myvote.myvote.data.repository.AssociateRepository;
 import com.br.myvote.myvote.data.repository.VoteRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -27,6 +28,9 @@ class VoteServiceTest {
     @Mock
     private VoteSessionService voteSessionService;
 
+    @Mock
+    private AssociateRepository associateRepository;
+
     @InjectMocks
     private VoteServiceImpl voteService;
 
@@ -36,9 +40,11 @@ class VoteServiceTest {
     public void testCreateVote() {
         VoteDTO voteDTO =  VoteFixture.createVoteDTO();
         VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+        Associate associate = AssociateFixture.createAssociate();
 
         when(voteRepository.findByAssociateCpf(any())).thenReturn(Optional.empty());
         when(voteSessionService.findById(voteDTO.voteSession().getId())).thenReturn(voteSessionDTO);
+        when(associateRepository.findByCpf(any())).thenReturn(associate);
 
         Vote vote = new Vote(voteDTO);
 
@@ -56,9 +62,11 @@ class VoteServiceTest {
     public void testCreateVoteAlreadyVoted() {
         VoteDTO voteDTO = VoteFixture.createVoteDTO();
         VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+        Associate associate = AssociateFixture.createAssociate();
 
         when(voteRepository.findByAssociateCpf(any())).thenReturn(Optional.of(new Vote()));
         when(voteSessionService.findById(voteDTO.voteSession().getId())).thenReturn(voteSessionDTO);
+        when(associateRepository.findByCpf(any())).thenReturn(associate);
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             voteService.createVote(voteDTO);
@@ -78,5 +86,20 @@ class VoteServiceTest {
             voteService.validateSessionExpire(voteDTO);
         });
         assertEquals("Vote Session has expired", exception.getMessage());
+    }
+
+    @Test
+    public void testAssociateNotFound() {
+        VoteDTO voteDTO =  VoteFixture.createVoteDTO();
+        VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+
+        when(voteRepository.findByAssociateCpf(any())).thenReturn(Optional.empty());
+        when(voteSessionService.findById(voteDTO.voteSession().getId())).thenReturn(voteSessionDTO);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            voteService.createVote(voteDTO);
+        });
+
+        assertEquals("Associate Not Found", exception.getMessage());
     }
 }

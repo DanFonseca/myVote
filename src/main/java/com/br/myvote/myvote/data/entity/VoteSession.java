@@ -26,8 +26,8 @@ public class VoteSession {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "time_to_expire")
-    Integer timeToExpire;
+    @Column(name = "minutes_to_expire")
+    Integer minutesToExpire;
 
 
     @ManyToOne (fetch = FetchType.EAGER)
@@ -42,10 +42,10 @@ public class VoteSession {
         this.agenda = voteSessionDTO.agenda();
         this.createdAt = new Date();
 
-        if(voteSessionDTO.timeToExpire() == null){
-            this.timeToExpire = 1;
+        if(voteSessionDTO.minutesToExpire() == null){
+            this.minutesToExpire = 1;
         }else {
-            this.timeToExpire = voteSessionDTO.timeToExpire();
+            this.minutesToExpire = voteSessionDTO.minutesToExpire();
         }
 
     }

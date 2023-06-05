@@ -15,38 +15,38 @@ public class VoteController {
 
     private final VoteService voteService;
 
-    public VoteController(VoteService voteService){
+    public VoteController(VoteService voteService) {
         this.voteService = voteService;
     }
 
 
     @ResponseBody()
     @GetMapping
-    public List<VoteDTO> getAssociate(){
+    public List<VoteDTO> getAssociate() {
         return voteService.findAll();
     }
 
     @ResponseBody()
-    @GetMapping( "/{id}")
-    public VoteDTO getVoteById(@PathVariable("id") Long id){
+    @GetMapping("/{id}")
+    public VoteDTO getVoteById(@PathVariable("id") Long id) {
         return voteService.findById(id);
     }
 
     @ResponseBody()
-    @GetMapping( "/session-id/{id}")
-    public List<Vote> getVoteBySessionId(@PathVariable("id") Long id){
+    @GetMapping("/session-id/{id}")
+    public List<Vote> getVoteBySessionId(@PathVariable("id") Long id) {
         return voteService.findByVoteSessionId(id);
     }
 
     @ResponseBody()
-    @GetMapping( "/result/{session-id}")
-    public Map<String, Integer> getResult(@PathVariable("session-id") Long id){
+    @GetMapping("/result")
+    public Map<String, Integer> getResult(@RequestParam("session-id") Long id) {
         return voteService.result(id);
     }
 
     @ResponseBody
     @PostMapping
-    public void postVote (@RequestBody VoteDTO voteDTO) {
+    public void postVote(@RequestBody VoteDTO voteDTO) {
         voteService.createVote(voteDTO);
     }
 }

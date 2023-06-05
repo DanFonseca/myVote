@@ -87,7 +87,7 @@ class VoteControllerTest {
 
         when(voteService.result(1L)).thenReturn(result);
 
-        mockMvc.perform(get("/vote/result/1")
+        mockMvc.perform(get("/vote/result?session-id=1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.yes", is(10)))
