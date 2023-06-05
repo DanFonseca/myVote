@@ -40,4 +40,16 @@ public class CalcUtil {
 
         return now.after(voteSessionExpireTime);
     }
+    public static boolean voteSessionIsExpired(VoteSession voteSession) {
+        Calendar calender = Calendar.getInstance();
+        calender.setTimeInMillis(voteSession.getCreatedAt().getTime());
+        calender.add(Calendar.MINUTE, voteSession.getMinutesToExpire());
+        long newTimeStamp = calender.getTimeInMillis();
+
+        Date voteSessionExpireTime = new Date(newTimeStamp);
+        Date now = new Date();
+
+        return now.after(voteSessionExpireTime);
+    }
+
 }

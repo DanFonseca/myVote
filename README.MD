@@ -60,7 +60,7 @@ Os principais recursos desta API são:
           e utils na qual será utilizado para apoiar a regra de negócio.
         * Data: A camada de data, representa os dados transacionais que serão armazenados e manipulado em tempo de execução.
         * Web: A camada web representa o entrypoint do projeto, onde chegará as requisições e também as comunicações externas da API.
-
+        * Job: Camada responsável pela configuração e implementação do Job. Foi utilizado neste desafio para verificar se a Sessão de Votação foi encerrada e postar o resultado em uma fila utilizando mensageria.
 
   * Motivo:
     * Seguindo este padrão de arquitetura, há uma facilidade de identificar os contextos e responsabilidade de cada camada na aplicação.
@@ -72,6 +72,7 @@ Os principais recursos desta API são:
 
 As tecnologias usadas neste projeto são:
 * [SpringBoot](https://spring.io/projects/spring-boot)
+* [Kafka](https://www.confluent.io/lp/apache-kafka/?utm_medium=sem&utm_source=google&utm_campaign=ch.sem_br.nonbrand_tp.prs_tgt.kafka-broad_mt.xct_rgn.latam_lng.eng_dv.all_con.kafka-general&utm_term=kafka&creative=&device=c&placement=&gad=1&gclid=Cj0KCQjw7PCjBhDwARIsANo7Cgnln-Gs5EvW6VOWMpBaTeNf-s3bBuQVFDhJKRUYS2WPihnKXY9rA1UaAvCLEALw_wcB)
 * [Postgres](https://www.postgresql.org/)
 * [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 * [Lombock](https://projectlombok.org/)

@@ -3,7 +3,6 @@ package com.br.myvote.myvote.web;
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.service.VoteService;
 import com.br.myvote.myvote.data.entity.Vote;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class VoteController {
 
     @ResponseBody()
     @GetMapping
-    public List<VoteDTO> getAssociate() {
+    public List<VoteDTO> geVote() {
         return voteService.findAll();
     }
 

@@ -9,4 +9,5 @@ public interface VoteSessionService {
      VoteSession createVoteSession(VoteSessionDTO voteSessionDTO);
      List<VoteSessionDTO> findAll ();
      VoteSessionDTO findById(Long id);
+     void updateVoteSession(VoteSession voteSession);
 }

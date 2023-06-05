@@ -1,14 +1,11 @@
 package com.br.myvote.myvote.business.service.impl;
 
 
-import com.br.myvote.myvote.business.dto.AgendaDTO;
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.excpetion.NotFoundException;
 import com.br.myvote.myvote.business.service.AgendaService;
 import com.br.myvote.myvote.business.service.VoteSessionService;
-import com.br.myvote.myvote.data.entity.Agenda;
 import com.br.myvote.myvote.data.entity.VoteSession;
-import com.br.myvote.myvote.data.repository.AgendaRepository;
 import com.br.myvote.myvote.data.repository.VoteSessionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +28,11 @@ public class VoteSessionServiceImpl implements VoteSessionService {
 
     public VoteSession createVoteSession(VoteSessionDTO voteSessionDTO) {
         agendaService.findById(voteSessionDTO.agenda().getId());
-
         VoteSession voteSession = new VoteSession(voteSessionDTO);
-
         return voteSessionRepository.saveAndFlush(voteSession);
+    }
+    public void updateVoteSession(VoteSession voteSession) {
+        voteSessionRepository.saveAndFlush(voteSession);
     }
 
     public List<VoteSessionDTO> findAll() {
@@ -51,5 +49,4 @@ public class VoteSessionServiceImpl implements VoteSessionService {
         logger.info("Session with id " + id + " was not found");
         throw new NotFoundException("Vote Session not found");
     }
-
 }

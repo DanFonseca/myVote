@@ -24,7 +24,7 @@ public class Agenda {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonIgnore
     private List<VoteSession> voteSession;
 

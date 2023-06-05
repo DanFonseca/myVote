@@ -11,3 +11,19 @@ spring:
           auto: update
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      group-id: group_id
+
+topic:
+  name:
+    finishedVoteSessionTopicName: finishedVoteSession
+
+myVote:
+  job:
+    fixedRate: 10000

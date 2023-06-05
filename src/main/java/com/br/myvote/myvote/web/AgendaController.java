@@ -2,9 +2,6 @@ package com.br.myvote.myvote.web;
 
 import com.br.myvote.myvote.business.dto.AgendaDTO;
 import com.br.myvote.myvote.business.service.AgendaService;
-
-import jakarta.websocket.server.PathParam;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,19 +18,19 @@ public class AgendaController {
 
     @ResponseBody()
     @GetMapping
-    public List<AgendaDTO> getAssociate(){
+    public List<AgendaDTO> getAgenda(){
         return agendaservice.findAll();
     }
 
     @ResponseBody()
     @GetMapping(value =  "/{id}")
-    public AgendaDTO getAssociateById(@PathVariable("id") Long  id){
+    public AgendaDTO getAgendaById(@PathVariable("id") Long  id){
         return agendaservice.findById(id);
     }
 
     @ResponseBody
     @PostMapping
-    public void postAssociate (@RequestBody AgendaDTO associateDTO) {
+    public void postAgenda (@RequestBody AgendaDTO associateDTO) {
          agendaservice.createAgenda(associateDTO);
     }
 }
