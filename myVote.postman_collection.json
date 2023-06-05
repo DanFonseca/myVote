@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "96959ea9-4216-4eb8-a8f9-ad5abc143492",
+		"name": "myVote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9645590"
+	},
+	"item": [
+		{
+			"name": "Gets",
+			"item": [
+				{
+					"name": "Rtorna todas as Pautas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/agenda",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agenda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna uma pauta por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/agenda/1021",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agenda",
+								"1021"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna as sessoes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vote-session",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vote-session"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retornar todos os Associados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/associate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"associate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna um associado  por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/associate/123",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"associate",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna todos os votos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vote",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna os  votos por id da sessao de votacao",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vote/session-id/252",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vote",
+								"session-id",
+								"252"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna o resultado final",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vote/result?session-id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vote",
+								"result"
+							],
+							"query": [
+								{
+									"key": "session-id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Criar um Associado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cpf\": \"11235\",\n    \"name\" : \"Daniel Freitas\",\n    \"email\" : \"daniel.freitas.ms1@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/associate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"associate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Uma Pauta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Nescau x Toddy\",\n    \"description\": \"Você Prefere Nescau ao inves do Toddy?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/agenda",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"agenda"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar uma sessão de votação",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"agenda\": {\n        \"id\": 2\n    },\n    \"minute_to_expire\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/vote-session",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vote-session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Votar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\": \"sim\",\n      \"associate\": {\n          \"cpf\": \"112135\"\n      },    \n\n     \"vote_session\": {\n        \"id\": 2\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/vote",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vote"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
