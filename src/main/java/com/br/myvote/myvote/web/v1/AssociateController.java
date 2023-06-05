@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.AssociateDTO;
 import com.br.myvote.myvote.business.service.AssociateService;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/associate")
+@RequestMapping("/associate/v1")
 public class AssociateController {
 
     private final AssociateService associateService;

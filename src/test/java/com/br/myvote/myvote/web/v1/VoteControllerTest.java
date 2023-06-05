@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.fixture.VoteFixture;
@@ -46,7 +46,7 @@ class VoteControllerTest {
 
         when(voteService.findAll()).thenReturn(voteDTOS);
 
-        mockMvc.perform(get("/vote")
+        mockMvc.perform(get("/vote/v1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
@@ -58,7 +58,7 @@ class VoteControllerTest {
 
         when(voteService.findById(1L)).thenReturn(voteDTO);
 
-        mockMvc.perform(get("/vote/1")
+        mockMvc.perform(get("/vote/v1/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)));
@@ -73,7 +73,7 @@ class VoteControllerTest {
 
         when(voteService.findByVoteSessionId(1L)).thenReturn(votes);
 
-        mockMvc.perform(get("/vote/session-id/1")
+        mockMvc.perform(get("/vote/v1/session-id/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
@@ -87,7 +87,7 @@ class VoteControllerTest {
 
         when(voteService.result(1L)).thenReturn(result);
 
-        mockMvc.perform(get("/vote/result?session-id=1")
+        mockMvc.perform(get("/vote/v1/result?session-id=1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.yes", is(10)))
@@ -98,7 +98,7 @@ class VoteControllerTest {
     public void testCreateVote() throws Exception {
         VoteDTO voteDTO = VoteFixture.createVoteDTO();
 
-        mockMvc.perform(post("/vote")
+        mockMvc.perform(post("/vote/v1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(voteDTO)))
                 .andExpect(status().isOk());

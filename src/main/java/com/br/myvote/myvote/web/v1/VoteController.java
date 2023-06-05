@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.VoteDTO;
 import com.br.myvote.myvote.business.service.VoteService;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/vote")
+@RequestMapping("/vote/v1")
 public class VoteController {
 
     private final VoteService voteService;

@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.AssociateDTO;
 import com.br.myvote.myvote.business.fixture.AssociateFixture;
@@ -43,7 +43,7 @@ class AssociateControllerTest {
 
         when(associateService.findAll()).thenReturn(associateDTOS);
 
-        mockMvc.perform(get("/associate")
+        mockMvc.perform(get("/associate/v1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
@@ -56,7 +56,7 @@ class AssociateControllerTest {
 
         when(associateService.findByCpf("12345678")).thenReturn(associateDTO);
 
-        mockMvc.perform(get("/associate/12345678")
+        mockMvc.perform(get("/associate/v1/12345678")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.cpf", is("12345678")));
@@ -69,7 +69,7 @@ class AssociateControllerTest {
 
         when(associateService.createAssociate(associateDTO)).thenReturn(AssociateFixture.createAssociate());
 
-        mockMvc.perform(post("/associate")
+        mockMvc.perform(post("/associate/v1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(associateDTO)))
                 .andExpect(status().isOk());

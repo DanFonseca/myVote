@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.VoteSessionDTO;
 import com.br.myvote.myvote.business.service.VoteSessionService;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vote-session")
+@RequestMapping("/vote-session/v1")
 public class VoteSessionController {
 
     private final VoteSessionService sessionService;

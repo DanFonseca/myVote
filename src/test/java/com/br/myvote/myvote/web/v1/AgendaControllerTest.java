@@ -1,8 +1,8 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
-import com.br.myvote.myvote.business.dto.VoteSessionDTO;
-import com.br.myvote.myvote.business.fixture.VoteFixture;
-import com.br.myvote.myvote.business.service.VoteSessionService;
+import com.br.myvote.myvote.business.dto.AgendaDTO;
+import com.br.myvote.myvote.business.fixture.AgendaFixture;
+import com.br.myvote.myvote.business.service.AgendaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -25,48 +25,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class VoteSessionControllerTest {
-
+class AgendaControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private VoteSessionService sessionService;
+    private AgendaService agendaService;
 
     @Test
-    public void shouldReturnAllSessions() throws Exception {
-        List<VoteSessionDTO> sessions = new ArrayList<>();
-        VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+    public void testGetAllAgendas() throws Exception {
+        List<AgendaDTO> agendaDTOS = new ArrayList<>();
+        AgendaDTO agendaDTO = AgendaFixture.createAgendaDTO();
+        agendaDTOS.add(agendaDTO);
+        agendaDTOS.add(agendaDTO);
 
-        sessions.add(voteSessionDTO);
-        sessions.add(voteSessionDTO);
+        when(agendaService.findAll()).thenReturn(agendaDTOS);
 
-        given(sessionService.findAll()).willReturn(sessions);
-
-        mockMvc.perform(get("/vote-session"))
+        mockMvc.perform(get("/agenda/v1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
     }
 
     @Test
-    public void shouldReturnSessionById() throws Exception {
-        VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+    public void testGetAgendaById() throws Exception {
+        AgendaDTO agendaDTO = AgendaFixture.createAgendaDTO();
 
-        given(sessionService.findById(1L)).willReturn(voteSessionDTO);
+        when(agendaService.findById(1L)).thenReturn(agendaDTO);
 
-        mockMvc.perform(get("/vote-session/1"))
+        mockMvc.perform(get("/agenda/v1/1")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)));
     }
 
     @Test
-    public void shouldCreateVoteSession() throws Exception {
-        VoteSessionDTO voteSessionDTO = VoteFixture.createVoteSessionDTO();
+    public void testCreateAgenda() throws Exception {
+        AgendaDTO agendaDTO = AgendaFixture.createAgendaDTO();
 
-        mockMvc.perform(post("/vote-session")
+        when(agendaService.createAgenda(any())).thenReturn(AgendaFixture.createAgenda());
+
+        mockMvc.perform(post("/agenda/v1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(voteSessionDTO)))
+                        .content(asJsonString(agendaDTO)))
                 .andExpect(status().isOk());
+
+        verify(agendaService, times(1)).createAgenda(agendaDTO);
     }
 
     public static String asJsonString(final Object obj) {

@@ -15,13 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/agenda",
+							"raw": "localhost:8080/agenda/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"agenda"
+								"agenda",
+								"v1"
 							]
 						}
 					},
@@ -33,13 +34,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/agenda/1021",
+							"raw": "localhost:8080/agenda/v1/1021",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"agenda",
+								"v1",
 								"1021"
 							]
 						}
@@ -64,13 +66,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/vote-session",
+							"raw": "localhost:8080/vote-session/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"vote-session"
+								"vote-session",
+								"v1"
 							]
 						}
 					},
@@ -82,13 +85,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/associate",
+							"raw": "localhost:8080/associate/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"associate"
+								"associate",
+								"v1"
 							]
 						}
 					},
@@ -100,13 +104,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/associate/123",
+							"raw": "localhost:8080/associate/v1/123",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"associate",
+								"v1",
 								"123"
 							]
 						}
@@ -131,13 +136,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/vote",
+							"raw": "localhost:8080/vote/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"vote"
+								"vote",
+								"v1"
 							]
 						}
 					},
@@ -161,13 +167,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/vote/session-id/252",
+							"raw": "localhost:8080/vote/v1/session-id/252",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"vote",
+								"v1",
 								"session-id",
 								"252"
 							]
@@ -193,19 +200,20 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/vote/result?session-id=1",
+							"raw": "localhost:8080/vote/v1/result?session-id=2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"vote",
+								"v1",
 								"result"
 							],
 							"query": [
 								{
 									"key": "session-id",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -221,7 +229,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"cpf\": \"11235\",\n    \"name\" : \"Daniel Freitas\",\n    \"email\" : \"daniel.freitas.ms1@gmail.com\"\n}",
+					"raw": "{\n    \"cpf\": \"3\",\n    \"name\" : \"Daniel Freitas\",\n    \"email\" : \"daniel.freitas.ms1@gmail.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -229,13 +237,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/associate",
+					"raw": "localhost:8080/associate/v1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"associate"
+						"associate",
+						"v1"
 					]
 				}
 			},
@@ -256,13 +265,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/agenda",
+					"raw": "localhost:8080/agenda/v1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"agenda"
+						"agenda",
+						"v1"
 					]
 				}
 			},
@@ -283,13 +293,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/vote-session",
+					"raw": "localhost:8080/vote-session/v1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"vote-session"
+						"vote-session",
+						"v1"
 					]
 				}
 			},
@@ -302,7 +313,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"vote\": \"sim\",\n      \"associate\": {\n          \"cpf\": \"112135\"\n      },    \n\n     \"vote_session\": {\n        \"id\": 2\n    }\n}",
+					"raw": "{\n    \"vote\": \"nao\",\n      \"associate\": {\n          \"cpf\": \"2\"\n      },    \n\n     \"vote_session\": {\n        \"id\": 2\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -310,13 +321,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/vote",
+					"raw": "localhost:8080/vote/v1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"vote"
+						"vote",
+						"v1"
 					]
 				}
 			},

@@ -65,6 +65,7 @@ Os principais recursos desta API são:
   * Motivo:
     * Seguindo este padrão de arquitetura, há uma facilidade de identificar os contextos e responsabilidade de cada camada na aplicação.
             Facilitando assim sua manutibilidade e entendimento.
+    * Versionamento da API: A estrategia de versionamento utilizada é de aplicar a versao na URI da API e no projeto separar as controllers com as respectivas versões por pacotes. E além disto, deixar a Collection na raiz do projeto e no repositório, para que a documentação da API seja também versionada.
 
 
 
@@ -119,7 +120,7 @@ As tecnologias usadas neste projeto são:
 * ### 1 Criar um Associado
 
 ```sh
-   curl --location 'localhost:8080/associate' \
+   curl --location 'localhost:8080/associate/v1' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "cpf": "11235",
@@ -138,7 +139,7 @@ As tecnologias usadas neste projeto são:
 
 * ### 3 Retorna as pautas
 ```sh
-   curl --location 'localhost:8080/vote-session' \
+   curl --location 'localhost:8080/vote-session/v1' \
 --data ''
    ```
 * #### Resposta
@@ -157,7 +158,7 @@ As tecnologias usadas neste projeto são:
  - Utilize o ID da pauta (Agenda) retornado anteriormente para cadastrar uma Sessão de Votação:
  - "minute_to_expire": representa por quantos minutos a sessão de votação estará disponivel.
 ```sh
-   curl --location 'localhost:8080/vote-session' \
+   curl --location 'localhost:8080/vote-session/v1' \
 --header 'Content-Type: application/json' \
 --data '{
      "agenda": {
@@ -193,7 +194,7 @@ As tecnologias usadas neste projeto são:
 * ##### 6 Votar
 
 ```sh
-curl --location 'localhost:8080/vote' \
+curl --location 'localhost:8080/vote/v1' \
 --header 'Content-Type: application/json' \
 --data '{
     "vote": "sim",
@@ -210,7 +211,7 @@ curl --location 'localhost:8080/vote' \
 * ##### 7 Resultado da votação
 
 ```sh
-curl --location 'localhost:8080/vote/result?session-id=2' \
+curl --location 'localhost:8080/vote/v1/result?session-id=2' \
 --data ''
    ```
 * #### Resposta

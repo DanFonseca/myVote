@@ -1,4 +1,4 @@
-package com.br.myvote.myvote.web;
+package com.br.myvote.myvote.web.v1;
 
 import com.br.myvote.myvote.business.dto.AgendaDTO;
 import com.br.myvote.myvote.business.service.AgendaService;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/agenda")
+@RequestMapping("/agenda/v1")
 public class AgendaController {
 
     private final AgendaService agendaservice;
