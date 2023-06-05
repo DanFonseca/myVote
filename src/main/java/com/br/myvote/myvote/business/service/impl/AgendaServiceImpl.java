@@ -42,7 +42,4 @@ public class AgendaServiceImpl implements AgendaService {
         logger.info("Agenda with id " + id + " was not found");
         throw new NotFoundException("Agenda not found");
     }
-
-
-
 }

@@ -5,6 +5,7 @@ import com.br.myvote.myvote.business.excpetion.NotFoundException;
 import com.br.myvote.myvote.business.service.AssociateService;
 import com.br.myvote.myvote.data.entity.Associate;
 import com.br.myvote.myvote.data.repository.AssociateRepository;
+import com.br.myvote.myvote.web.thirdyparty.config.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,21 @@ public class AssociateServiceImpl implements AssociateService {
     Logger logger = LoggerFactory.getLogger(AssociateServiceImpl.class);
     private final AssociateRepository associateRepository;
 
-    public AssociateServiceImpl(AssociateRepository associateRepository) {
+    private UserInfo userInfo;
+
+    public AssociateServiceImpl(AssociateRepository associateRepository, UserInfo userInfo) {
         this.associateRepository = associateRepository;
+        this.userInfo = userInfo;
     }
 
     public Associate createAssociate(AssociateDTO associateDTO) {
-        Associate associate = new Associate(associateDTO);
-        return associateRepository.save(associate);
+
+        if (userInfo.validCPF(associateDTO.cpf())) {
+            Associate associate = new Associate(associateDTO);
+            return associateRepository.save(associate);
+        }
+
+        throw  new IllegalArgumentException("CPF is Unable to Vote.");
     }
 
     public List<AssociateDTO> findAll() {

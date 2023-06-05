@@ -26,4 +26,6 @@ topic:
 
 myVote:
   job:
-    fixedRate: 10000
+    fixedRate: 60000
+  base-uri:
+    user-info: https://user-info.herokuapp.com/users/
